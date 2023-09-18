@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   // Estado para almacenar la fecha actual
@@ -49,16 +50,16 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App container mt-5">
       <h1>Bienvenidos</h1>
-      <p>Fecha Actual: {fecha.toLocaleDateString()}</p>
-      <div>
-        <button onClick={decrementarCantidadAvances}>-</button>
-        <span>{cantidadAvances}</span>
-        <button onClick={incrementarCantidadAvances}>+</button>
+      <div className="mb-3">
+        <button className="btn btn-danger" onClick={decrementarCantidadAvances}>-</button>
+        <span className="mx-3">{cantidadAvances}</span>
+        <button className="btn btn-danger" onClick={incrementarCantidadAvances}>+</button>
       </div>
-      <button onClick={() => avanzarDiasConCantidad(cantidadAvances)}>Avanzar con Cantidad</button>
-      <button onClick={() => retrocederDiasConCantidad(cantidadAvances)}>Retroceder con Cantidad</button>
+      <button className="btn btn-danger" onClick={() => avanzarDiasConCantidad(cantidadAvances)}>+</button>
+      <button className="btn btn-danger" onClick={() => retrocederDiasConCantidad(cantidadAvances)}>-</button>
+      <p>Fecha Actual: {fecha.toLocaleDateString()}</p>
     </div>
   );
 }
