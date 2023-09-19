@@ -67,7 +67,7 @@ function App() {
 
     // Determine si es de día o de noche y configure la URL de la imagen en consecuencia
     if (esDeDia(horaActual)) {
-      setImagenUrl('https://i0.pngocean.com/files/985/682/370/cartoon-smiling-sun.jpg'); // Cambia 'url_de_la_imagen_del_sol.jpg' por la URL de la imagen del sol
+      setImagenUrl('https://th.bing.com/th/id/R.9bbd5cc5ac5226bf03e2a831e41e50c2?rik=lhI75j4b2iisQA&riu=http%3a%2f%2f2.bp.blogspot.com%2f-7HKY4oaWeUc%2fU8LdNf6gmFI%2fAAAAAAACS8k%2fjMXyBdVzFf0%2fs1600%2fSOL+(56).png&ehk=SOEayHPlD4s3EMAT2Kw1LuUsUILBarF8G2566yUN7XY%3d&risl=&pid=ImgRaw&r=0'); // Cambia 'url_de_la_imagen_del_sol.jpg' por la URL de la imagen del sol
     } else {
       setImagenUrl('https://i.pinimg.com/originals/32/3e/9d/323e9d46bf8ea3a9f48637657feb104a.png'); // Cambia 'url_de_la_imagen_de_la_luna.jpg' por la URL de la imagen de la luna
     }
