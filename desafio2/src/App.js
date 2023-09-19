@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const flechaUrl = 'https://cdn-icons-png.flaticon.com/512/860/860774.png';
-
-// URL del segundo logo
 const segundoLogoUrl = 'https://cdn-icons-png.flaticon.com/512/54/54531.png';
 
 function ButtonsArriba({ cantidadAvances, incrementarCantidadAvances, decrementarCantidadAvances }) {
@@ -59,7 +57,7 @@ function App() {
   const [fecha, setFecha] = useState(new Date());
 
   // Estado para almacenar la cantidad de avances (steps)
-  const [cantidadAvances, setCantidadAvances] = useState(1);
+  const [cantidadAvances, setCantidadAvances] = useState(0);
 
   useEffect(() => {
     // Función para determinar si es de día o de noche
