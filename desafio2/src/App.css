@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-image: url('https://wallup.net/wp-content/uploads/2016/01/164002-Simon_C._Page-abstract-colorful-pattern-748x468.jpg');
+  background-image: url('https://th.bing.com/th/id/R.f9e2b49e50aa0daa950316bcc05fcd51?rik=QzY%2fDObAh1V%2big&pid=ImgRaw&r=0');
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -13,3 +13,43 @@ h1 {
   font-size: 2rem;
   margin-bottom: 20px;
 }
+.content-container {
+  background-color: rgba(81, 89, 47, 0.8); /* Fondo de color con transparencia */
+  padding: 20px; /* Espaciado interior para el contenido */
+  border-radius: 10px; /* Bordes redondeados para el contenedor */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra para el contenedor */
+  width: 300px; /* Ejemplo: 80% del ancho del contenedor padre */
+  height:500px ; /* Ejemplo: 300 píxeles de alto */
+}
+
+.small-image {
+  max-width: 100px; /* Cambia esto al tamaño deseado */
+  max-height: 100px; /* Cambia esto al tamaño deseado */
+}
+
+.image-container {
+  align-self: flex-end;
+  margin-top: 150px; /* Ajusta la cantidad de margen según tus necesidades */
+}
+
+.fecha-actual {
+  font-size: 1.2rem; /* Tamaño de fuente */
+  color: #453c38; /* Color del texto */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+  margin-bottom: 60px;
+  background-color: #db8f6c; /* Color de fondo */
+  padding: 10px 15px; /* Espaciado interno */
+  border-radius: 15px; /* Borde redondeado */
+  border: 1px solid #db8f6c; /* Borde sólido y color gris */
+  /* Otros estilos que desees agregar */
+}
+.titulo-bienvenida {
+  font-size: 2rem;
+  color: #db8f6c;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+  border: 2px solid #db8f6c; /* Borde de 2 píxeles de ancho y color negro (#333) */
+  padding: 10px; /* Espacio interno alrededor del texto para separarlo del borde */
+  /* Otros estilos que desees agregar */
+}
+
