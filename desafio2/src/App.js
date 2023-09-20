@@ -45,27 +45,16 @@ function ButtonsAbajo({ cantidadAvancesArriba, avanzarDiasConCantidadAbajo, retr
 }
 
 function App() {
-  // Estado para almacenar la cantidad de avances (steps) de los botones de arriba
   const [cantidadAvancesArriba, setCantidadAvancesArriba] = useState(0);
-  // Estado para almacenar la cantidad de avances (steps) de los botones de abajo
   const [cantidadAvancesAbajo, setCantidadAvancesAbajo] = useState(0);
-
-  // Estado para almacenar la hora actual
   const [horaActual, setHoraActual] = useState(new Date().getHours());
-
-  // Estado para almacenar la URL de la imagen del sol o la luna
   const [imagenUrl, setImagenUrl] = useState('');
-
-  // Estado para almacenar la fecha actual
   const [fecha, setFecha] = useState(new Date());
 
   useEffect(() => {
-    // Función para determinar si es de día o de noche
     const esDeDia = (hora) => {
       return hora >= 6 && hora < 18;
     };
-
-    // Determine si es de día o de noche y configure la URL de la imagen en consecuencia
     if (esDeDia(horaActual)) {
       setImagenUrl('https://th.bing.com/th/id/R.9bbd5cc5ac5226bf03e2a831e41e50c2?rik=lhI75j4b2iisQA&riu=http%3a%2f%2f2.bp.blogspot.com%2f-7HKY4oaWeUc%2fU8LdNf6gmFI%2fAAAAAAACS8k%2fjMXyBdVzFf0%2fs1600%2fSOL+(56).png&ehk=SOEayHPlD4s3EMAT2Kw1LuUsUILBarF8G2566yUN7XY%3d&risl=&pid=ImgRaw&r=0'); // Cambia 'url_de_la_imagen_del_sol.jpg' por la URL de la imagen del sol
     } else {
@@ -73,33 +62,28 @@ function App() {
     }
   }, [horaActual]);
 
-  // Función para retroceder un día
   const retrocederDia = () => {
     const nuevaFecha = new Date(fecha);
     nuevaFecha.setDate(fecha.getDate() - 1);
     setFecha(nuevaFecha);
   };
 
-  // Función para avanzar un día
   const avanzarDia = () => {
     const nuevaFecha = new Date(fecha);
     nuevaFecha.setDate(fecha.getDate() + 1);
     setFecha(nuevaFecha);
   };
 
-  // Función para incrementar la cantidad de avances (steps) de los botones de arriba
   const incrementarCantidadAvancesArriba = () => {
     setCantidadAvancesArriba(cantidadAvancesArriba + 1);
   };
 
-  // Función para decrementar la cantidad de avances (steps) de los botones de arriba
   const decrementarCantidadAvancesArriba = () => {
     if (cantidadAvancesArriba > 1) {
       setCantidadAvancesArriba(cantidadAvancesArriba - 1);
     }
   };
 
-  // Función para avanzar la cantidad de días especificados en los botones de abajo
   const avanzarDiasConCantidadAbajo = (cantidad) => {
     const nuevaFecha = new Date(fecha);
     nuevaFecha.setDate(fecha.getDate() + cantidad);
@@ -107,12 +91,10 @@ function App() {
     setCantidadAvancesAbajo(cantidadAvancesAbajo + cantidad);
   };
 
-  // Función para retroceder la cantidad de días especificados en los botones de abajo
-  const retrocederDiasConCantidadAbajo = (cantidad) => {
+  const retrocederDiasConCantidadAbajo = () => {
     const nuevaFecha = new Date(fecha);
-    nuevaFecha.setDate(fecha.getDate() - cantidad);
+    nuevaFecha.setDate(fecha.getDate() - cantidadAvancesArriba);
     setFecha(nuevaFecha);
-    setCantidadAvancesAbajo(cantidadAvancesAbajo + cantidad);
   };
 
   return (
@@ -129,7 +111,14 @@ function App() {
           avanzarDiasConCantidadAbajo={avanzarDiasConCantidadAbajo}
           retrocederDiasConCantidadAbajo={retrocederDiasConCantidadAbajo}
         />
-        <p className="fecha-actual">La fecha de hoy es {fecha.toLocaleDateString()}</p>
+      <p className="fecha-actual">
+        La fecha de hoy es {fecha.toLocaleDateString('es-ES', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </p>
         <div className="image-container my-4">
           <img
             src={imagenUrl}

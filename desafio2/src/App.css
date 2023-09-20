@@ -14,40 +14,39 @@ h1 {
   margin-bottom: 20px;
 }
 .content-container {
-  background-color: rgba(179, 163, 177, 0.8); /* Fondo de color con transparencia */
-  padding: 20px; /* Espaciado interior para el contenido */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra para el contenedor */
-  width: 300px; /* Ejemplo: 80% del ancho del contenedor padre */
-  height:500px ; /* Ejemplo: 300 píxeles de alto */
+  background-color: rgba(179, 163, 177, 0.8); 
+  padding: 20px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 300px; 
+  height:500px ; 
 }
 
 .small-image {
-  max-width: 150px; /* Cambia esto al tamaño deseado */
-  max-height: 150px; /* Cambia esto al tamaño deseado */
+  max-width: 150px; 
+  max-height: 150px; 
 }
 
 .image-container {
   align-self: flex-end;
-  margin-top: 20px; /* Ajusta la cantidad de margen según tus necesidades */
+  margin-top: 20px; 
 }
 
 .fecha-actual {
-  font-size: 2rem; /* Tamaño de fuente */
-  color: #373339; /* Color del texto */
+  font-size: 1rem; 
+  color: #000000; 
   opacity: 0.5;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   margin-top: 60px;
-  background-color: #986d5a; /* Color de fondo */
-  padding: 10px 15px; /* Espaciado interno */
-  border-radius: 80px; /* Borde redondeado */
-  border: 1px solid #db8f6c; /* Borde sólido y color gris */
+  background-color: #986d5a; 
+  padding: 10px 15px; 
+  border-radius: 80px; 
+  border: 1px solid #db8f6c; 
 }
 .titulo-bienvenida {
   font-size: 2rem;
   color: #644a65;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-bottom: 20px;
-  border: 2px solid #775d7a; /* Borde de 2 píxeles de ancho y color negro (#333) */
-  padding: 10px; /* Espacio interno alrededor del texto para separarlo del borde */
-  /* Otros estilos que desees agregar */
+  border: 2px solid #775d7a; 
+  padding: 10px; 
 }
