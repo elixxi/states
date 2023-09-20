@@ -88,13 +88,14 @@ function App() {
     const nuevaFecha = new Date(fecha);
     nuevaFecha.setDate(fecha.getDate() + cantidad);
     setFecha(nuevaFecha);
-    setCantidadAvancesAbajo(cantidadAvancesAbajo + cantidad);
+    setCantidadAvancesAbajo(cantidadAvancesAbajo + cantidadAvancesArriba);
   };
-
-  const retrocederDiasConCantidadAbajo = () => {
+  
+  const retrocederDiasConCantidadAbajo = (cantidad) => {
     const nuevaFecha = new Date(fecha);
-    nuevaFecha.setDate(fecha.getDate() - cantidadAvancesArriba);
+    nuevaFecha.setDate(fecha.getDate() - cantidad);
     setFecha(nuevaFecha);
+    setCantidadAvancesAbajo(cantidadAvancesAbajo - cantidad);
   };
 
   return (
