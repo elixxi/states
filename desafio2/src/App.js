@@ -23,20 +23,21 @@ function ButtonsArriba({ cantidadAvancesArriba, incrementarCantidadAvancesArriba
     </div>
   );
 }
-function ButtonsAbajo({ cantidadAvancesAbajo, avanzarDiasConCantidad, retrocederDiasConCantidad }) {
+
+function ButtonsAbajo({ cantidadAvancesAbajo, avanzarDiasConCantidadAbajo, retrocederDiasConCantidadAbajo }) {
   return (
     <div className="d-flex justify-content-center align-items-center">
       <img
         src={flechaUrl}
         alt='Flecha izquierda'
-        onClick={() => retrocederDiasConCantidad(cantidadAvancesAbajo)}
+        onClick={() => retrocederDiasConCantidadAbajo(cantidadAvancesAbajo)}
         style={{ width: '20px', height: '20px', cursor: 'pointer' }}
       />
       <span className="mx-3">{cantidadAvancesAbajo}</span>
       <img
         src={segundoLogoUrl}
         alt='Flecha derecha'
-        onClick={() => avanzarDiasConCantidad(cantidadAvancesAbajo)}
+        onClick={() => avanzarDiasConCantidadAbajo(cantidadAvancesAbajo)}
         style={{ width: '20px', height: '20px', cursor: 'pointer' }}
       />
     </div>
@@ -47,6 +48,7 @@ function App() {
   // Estados para los botones de arriba y abajo
   const [cantidadAvancesArriba, setCantidadAvancesArriba] = useState(0);
   const [cantidadAvancesAbajo, setCantidadAvancesAbajo] = useState(0);
+
   // Estado para almacenar la hora actual
   const [horaActual, setHoraActual] = useState(new Date().getHours());
 
@@ -62,7 +64,7 @@ function App() {
   useEffect(() => {
     // Función para determinar si es de día o de noche
     const esDeDia = (hora) => {
-      return hora >= 6 && hora < 18; 
+      return hora >= 6 && hora < 18;
     };
 
     // Determine si es de día o de noche y configure la URL de la imagen en consecuencia
@@ -87,30 +89,36 @@ function App() {
     setFecha(nuevaFecha);
   };
 
-  // Función para incrementar la cantidad de avances (steps)
-  const incrementarCantidadAvances = () => {
-    setCantidadAvances(cantidadAvances + 1);
+  // Función para incrementar la cantidad de avances (steps) en los botones de arriba
+  const incrementarCantidadAvancesArriba = () => {
+    setCantidadAvancesArriba(cantidadAvancesArriba + 1);
   };
 
-  // Función para decrementar la cantidad de avances (steps)
-  const decrementarCantidadAvances = () => {
-    if (cantidadAvances > 1) {
-      setCantidadAvances(cantidadAvances - 1);
+  // Función para decrementar la cantidad de avances (steps) en los botones de arriba
+  const decrementarCantidadAvancesArriba = () => {
+    if (cantidadAvancesArriba > 0) {
+      setCantidadAvancesArriba(cantidadAvancesArriba - 1);
     }
   };
 
-  // Función para avanzar la cantidad de días especificados
-  const avanzarDiasConCantidad = (cantidad) => {
-    const nuevaFecha = new Date(fecha);
-    nuevaFecha.setDate(fecha.getDate() + cantidad);
-    setFecha(nuevaFecha);
+  // Función para avanzar la cantidad de días especificados en los botones de abajo
+  const avanzarDiasConCantidadAbajo = () => {
+    if (cantidadAvancesArriba > 0) {
+      const nuevaFecha = new Date(fecha);
+      nuevaFecha.setDate(fecha.getDate() + cantidadAvancesArriba);
+      setFecha(nuevaFecha);
+      setCantidadAvancesAbajo(cantidadAvancesAbajo + cantidadAvancesArriba);
+    }
   };
 
-  // Función para retroceder la cantidad de días especificados
-  const retrocederDiasConCantidad = (cantidad) => {
-    const nuevaFecha = new Date(fecha);
-    nuevaFecha.setDate(fecha.getDate() - cantidad);
-    setFecha(nuevaFecha);
+  // Función para retroceder la cantidad de días especificados en los botones de abajo
+  const retrocederDiasConCantidadAbajo = () => {
+    if (cantidadAvancesArriba > 0 && cantidadAvancesAbajo >= cantidadAvancesArriba) {
+      const nuevaFecha = new Date(fecha);
+      nuevaFecha.setDate(fecha.getDate() - cantidadAvancesArriba);
+      setFecha(nuevaFecha);
+      setCantidadAvancesAbajo(cantidadAvancesAbajo - cantidadAvancesArriba);
+    }
   };
 
   return (
@@ -119,15 +127,15 @@ function App() {
         <h1 className="titulo-bienvenida">Bienvenidos</h1>
         <ButtonsArriba
           cantidadAvancesArriba={cantidadAvancesArriba}
-          incrementarCantidadAvancesArriba={() => setCantidadAvancesArriba(cantidadAvancesArriba + 1)}
-          decrementarCantidadAvancesArriba={() => setCantidadAvancesArriba(cantidadAvancesArriba - 1)}
+          incrementarCantidadAvancesArriba={incrementarCantidadAvancesArriba}
+          decrementarCantidadAvancesArriba={decrementarCantidadAvancesArriba}
         />
         <ButtonsAbajo
           cantidadAvancesAbajo={cantidadAvancesAbajo}
-          avanzarDiasConCantidad={() => setCantidadAvancesAbajo(cantidadAvancesAbajo + cantidadAvancesArriba)}
-          retrocederDiasConCantidad={() => setCantidadAvancesAbajo(cantidadAvancesAbajo - cantidadAvancesArriba)}
+          avanzarDiasConCantidadAbajo={avanzarDiasConCantidadAbajo}
+          retrocederDiasConCantidadAbajo={retrocederDiasConCantidadAbajo}
         />
- <p className="fecha-actual">{fecha.toLocaleDateString()}</p>
+        <p className="fecha-actual">La fecha de hoy es {fecha.toLocaleDateString()}</p>
         <div className="image-container my-4">
           <img
             src={imagenUrl}
