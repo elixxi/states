@@ -4,42 +4,39 @@ import './App.css';
 const flechaUrl = 'https://cdn-icons-png.flaticon.com/512/860/860774.png';
 const segundoLogoUrl = 'https://cdn-icons-png.flaticon.com/512/54/54531.png';
 
-function ButtonsArriba({ cantidadAvances, incrementarCantidadAvances, decrementarCantidadAvances }) {
+function ButtonsArriba({ cantidadAvancesArriba, incrementarCantidadAvancesArriba, decrementarCantidadAvancesArriba }) {
   return (
     <div className="mb-3">
       <img
-        src="https://cdn-icons-png.flaticon.com/512/860/860774.png"
+        src={flechaUrl}
         alt="Botón de Disminución"
-        onClick={decrementarCantidadAvances}
+        onClick={decrementarCantidadAvancesArriba}
         style={{ width: "20px", height: "20px", cursor: "pointer" }}
       />   
-        <span className="mx-3">{cantidadAvances}</span>
-        <img
-        src="https://cdn-icons-png.flaticon.com/512/54/54531.png"
+      <span className="mx-3">{cantidadAvancesArriba}</span>
+      <img
+        src={segundoLogoUrl}
         alt="Botón de Aumento"
-        onClick={incrementarCantidadAvances}
+        onClick={incrementarCantidadAvancesArriba}
         style={{ width: "20px", height: "20px", cursor: "pointer" }}
       />
-
     </div>
   );
 }
-
-// Componente para los botones de abajo
-function ButtonsAbajo({ cantidadAvances, avanzarDiasConCantidad, retrocederDiasConCantidad }) {
+function ButtonsAbajo({ cantidadAvancesAbajo, avanzarDiasConCantidad, retrocederDiasConCantidad }) {
   return (
     <div className="d-flex justify-content-center align-items-center">
       <img
         src={flechaUrl}
         alt='Flecha izquierda'
-        onClick={() => retrocederDiasConCantidad(cantidadAvances)}
+        onClick={() => retrocederDiasConCantidad(cantidadAvancesAbajo)}
         style={{ width: '20px', height: '20px', cursor: 'pointer' }}
       />
-      <span className="mx-3">{cantidadAvances}</span>
+      <span className="mx-3">{cantidadAvancesAbajo}</span>
       <img
         src={segundoLogoUrl}
         alt='Flecha derecha'
-        onClick={() => avanzarDiasConCantidad(cantidadAvances)}
+        onClick={() => avanzarDiasConCantidad(cantidadAvancesAbajo)}
         style={{ width: '20px', height: '20px', cursor: 'pointer' }}
       />
     </div>
@@ -47,6 +44,9 @@ function ButtonsAbajo({ cantidadAvances, avanzarDiasConCantidad, retrocederDiasC
 }
 
 function App() {
+  // Estados para los botones de arriba y abajo
+  const [cantidadAvancesArriba, setCantidadAvancesArriba] = useState(0);
+  const [cantidadAvancesAbajo, setCantidadAvancesAbajo] = useState(0);
   // Estado para almacenar la hora actual
   const [horaActual, setHoraActual] = useState(new Date().getHours());
 
@@ -62,7 +62,7 @@ function App() {
   useEffect(() => {
     // Función para determinar si es de día o de noche
     const esDeDia = (hora) => {
-      return hora >= 6 && hora < 18; // Suponemos que el día es de 6 AM a 6 PM
+      return hora >= 6 && hora < 18; 
     };
 
     // Determine si es de día o de noche y configure la URL de la imagen en consecuencia
@@ -116,16 +116,16 @@ function App() {
   return (
     <div className="App mt-5">
       <div className="content-container">
-      <h1 className="titulo-bienvenida">Bienvenidos</h1>
+        <h1 className="titulo-bienvenida">Bienvenidos</h1>
         <ButtonsArriba
-          cantidadAvances={cantidadAvances}
-          incrementarCantidadAvances={incrementarCantidadAvances}
-          decrementarCantidadAvances={decrementarCantidadAvances}
+          cantidadAvancesArriba={cantidadAvancesArriba}
+          incrementarCantidadAvancesArriba={() => setCantidadAvancesArriba(cantidadAvancesArriba + 1)}
+          decrementarCantidadAvancesArriba={() => setCantidadAvancesArriba(cantidadAvancesArriba - 1)}
         />
         <ButtonsAbajo
-          cantidadAvances={cantidadAvances}
-          avanzarDiasConCantidad={avanzarDiasConCantidad}
-          retrocederDiasConCantidad={retrocederDiasConCantidad}
+          cantidadAvancesAbajo={cantidadAvancesAbajo}
+          avanzarDiasConCantidad={() => setCantidadAvancesAbajo(cantidadAvancesAbajo + cantidadAvancesArriba)}
+          retrocederDiasConCantidad={() => setCantidadAvancesAbajo(cantidadAvancesAbajo - cantidadAvancesArriba)}
         />
  <p className="fecha-actual">{fecha.toLocaleDateString()}</p>
         <div className="image-container my-4">
