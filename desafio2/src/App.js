@@ -4,40 +4,40 @@ import './App.css';
 const flechaUrl = 'https://cdn-icons-png.flaticon.com/512/860/860774.png';
 const segundoLogoUrl = 'https://cdn-icons-png.flaticon.com/512/54/54531.png';
 
-function ButtonsArriba({ cantidadAvancesArriba, incrementarCantidadAvancesArriba, decrementarCantidadAvancesArriba }) {
+function ButtonsArriba({ cantidadAvances, incrementarCantidadAvances, decrementarCantidadAvances }) {
   return (
     <div className="mb-3">
       <img
         src={flechaUrl}
         alt="Botón de Disminución"
-        onClick={decrementarCantidadAvancesArriba}
+        onClick={decrementarCantidadAvances}
         style={{ width: "20px", height: "20px", cursor: "pointer" }}
       />   
-      <span className="mx-3">{cantidadAvancesArriba}</span>
+      <span className="mx-3">{cantidadAvances}</span>
       <img
         src={segundoLogoUrl}
         alt="Botón de Aumento"
-        onClick={incrementarCantidadAvancesArriba}
+        onClick={incrementarCantidadAvances}
         style={{ width: "20px", height: "20px", cursor: "pointer" }}
       />
     </div>
   );
 }
 
-function ButtonsAbajo({ cantidadAvancesAbajo, avanzarDiasConCantidadAbajo, retrocederDiasConCantidadAbajo }) {
+function ButtonsAbajo({ cantidadAvancesArriba, avanzarDiasConCantidadAbajo, retrocederDiasConCantidadAbajo }) {
   return (
     <div className="d-flex justify-content-center align-items-center">
       <img
         src={flechaUrl}
         alt='Flecha izquierda'
-        onClick={() => retrocederDiasConCantidadAbajo(cantidadAvancesAbajo)}
+        onClick={() => retrocederDiasConCantidadAbajo(cantidadAvancesArriba)}
         style={{ width: '20px', height: '20px', cursor: 'pointer' }}
       />
-      <span className="mx-3">{cantidadAvancesAbajo}</span>
+      <span className="mx-3">{cantidadAvancesArriba}</span>
       <img
         src={segundoLogoUrl}
         alt='Flecha derecha'
-        onClick={() => avanzarDiasConCantidadAbajo(cantidadAvancesAbajo)}
+        onClick={() => avanzarDiasConCantidadAbajo(cantidadAvancesArriba)}
         style={{ width: '20px', height: '20px', cursor: 'pointer' }}
       />
     </div>
@@ -45,8 +45,9 @@ function ButtonsAbajo({ cantidadAvancesAbajo, avanzarDiasConCantidadAbajo, retro
 }
 
 function App() {
-  // Estados para los botones de arriba y abajo
+  // Estado para almacenar la cantidad de avances (steps) de los botones de arriba
   const [cantidadAvancesArriba, setCantidadAvancesArriba] = useState(0);
+  // Estado para almacenar la cantidad de avances (steps) de los botones de abajo
   const [cantidadAvancesAbajo, setCantidadAvancesAbajo] = useState(0);
 
   // Estado para almacenar la hora actual
@@ -57,9 +58,6 @@ function App() {
 
   // Estado para almacenar la fecha actual
   const [fecha, setFecha] = useState(new Date());
-
-  // Estado para almacenar la cantidad de avances (steps)
-  const [cantidadAvances, setCantidadAvances] = useState(0);
 
   useEffect(() => {
     // Función para determinar si es de día o de noche
@@ -89,36 +87,32 @@ function App() {
     setFecha(nuevaFecha);
   };
 
-  // Función para incrementar la cantidad de avances (steps) en los botones de arriba
+  // Función para incrementar la cantidad de avances (steps) de los botones de arriba
   const incrementarCantidadAvancesArriba = () => {
     setCantidadAvancesArriba(cantidadAvancesArriba + 1);
   };
 
-  // Función para decrementar la cantidad de avances (steps) en los botones de arriba
+  // Función para decrementar la cantidad de avances (steps) de los botones de arriba
   const decrementarCantidadAvancesArriba = () => {
-    if (cantidadAvancesArriba > 0) {
+    if (cantidadAvancesArriba > 1) {
       setCantidadAvancesArriba(cantidadAvancesArriba - 1);
     }
   };
 
   // Función para avanzar la cantidad de días especificados en los botones de abajo
-  const avanzarDiasConCantidadAbajo = () => {
-    if (cantidadAvancesArriba > 0) {
-      const nuevaFecha = new Date(fecha);
-      nuevaFecha.setDate(fecha.getDate() + cantidadAvancesArriba);
-      setFecha(nuevaFecha);
-      setCantidadAvancesAbajo(cantidadAvancesAbajo + cantidadAvancesArriba);
-    }
+  const avanzarDiasConCantidadAbajo = (cantidad) => {
+    const nuevaFecha = new Date(fecha);
+    nuevaFecha.setDate(fecha.getDate() + cantidad);
+    setFecha(nuevaFecha);
+    setCantidadAvancesAbajo(cantidadAvancesAbajo + cantidad);
   };
 
   // Función para retroceder la cantidad de días especificados en los botones de abajo
-  const retrocederDiasConCantidadAbajo = () => {
-    if (cantidadAvancesArriba > 0 && cantidadAvancesAbajo >= cantidadAvancesArriba) {
-      const nuevaFecha = new Date(fecha);
-      nuevaFecha.setDate(fecha.getDate() - cantidadAvancesArriba);
-      setFecha(nuevaFecha);
-      setCantidadAvancesAbajo(cantidadAvancesAbajo - cantidadAvancesArriba);
-    }
+  const retrocederDiasConCantidadAbajo = (cantidad) => {
+    const nuevaFecha = new Date(fecha);
+    nuevaFecha.setDate(fecha.getDate() - cantidad);
+    setFecha(nuevaFecha);
+    setCantidadAvancesAbajo(cantidadAvancesAbajo + cantidad);
   };
 
   return (
@@ -126,12 +120,12 @@ function App() {
       <div className="content-container">
         <h1 className="titulo-bienvenida">Bienvenidos</h1>
         <ButtonsArriba
-          cantidadAvancesArriba={cantidadAvancesArriba}
-          incrementarCantidadAvancesArriba={incrementarCantidadAvancesArriba}
-          decrementarCantidadAvancesArriba={decrementarCantidadAvancesArriba}
+          cantidadAvances={cantidadAvancesArriba}
+          incrementarCantidadAvances={incrementarCantidadAvancesArriba}
+          decrementarCantidadAvances={decrementarCantidadAvancesArriba}
         />
         <ButtonsAbajo
-          cantidadAvancesAbajo={cantidadAvancesAbajo}
+          cantidadAvancesArriba={cantidadAvancesArriba}
           avanzarDiasConCantidadAbajo={avanzarDiasConCantidadAbajo}
           retrocederDiasConCantidadAbajo={retrocederDiasConCantidadAbajo}
         />
