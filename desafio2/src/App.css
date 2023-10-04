@@ -1,52 +1,72 @@
 .App {
   text-align: center;
+}
+.App-logo {
+  max-width: 100px; 
+  max-height: 100px;
+}
+
+.fecha-container {
+  display: inline-block;
+  background-color: rgb(158, 126, 158);
+  padding: 10px;
+  border-radius: 80px;
+  margin-top: 20px;
+  font-size: 1.5rem; 
+}
+
+.bienvenidos-title {
+  font-size: 3rem; 
+  color: #574454; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  margin-bottom: 20px; 
+}
+.App-header {
   background-image: url('https://images5.alphacoders.com/616/616552.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
 }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+
+
+button{
+  background: none;
+  border: none;
 }
-.content-container {
-  background-color: rgba(179, 163, 177, 0.8); 
-  padding: 20px; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 300px; 
-  height:500px ; 
+button img{
+  height: 4rem;
+  width: 4rem;
 }
 
-.small-image {
-  max-width: 150px; 
-  max-height: 150px; 
+.steps {
+  display: flex;
+  align-items: center;
+}
+.change {
+  display: flex;
+  align-items: center;
+}
+h1{
+  font-size: 24px; /* Tamaño de fuente más pequeño */
+  font-weight: bold; /* Negrita para resaltar el número */
+  font-family: 'Arial', sans-serif; /* Cambia la fuente según tus preferencias */
+  margin: 0 10px; 
+}
+h2 {
+  font-size: 24px; /* Tamaño de fuente más pequeño */
+  font-weight: bold; /* Negrita para resaltar el número */
+  font-family: 'Arial', sans-serif; /* Cambia la fuente según tus preferencias */
+  margin: 0 10px;
 }
 
-.image-container {
-  align-self: flex-end;
-  margin-top: 20px; 
-}
-
-.fecha-actual {
-  font-size: 1rem; 
-  color: #000000; 
-  opacity: 0.5;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  margin-top: 60px;
-  background-color: #986d5a; 
-  padding: 10px 15px; 
-  border-radius: 80px; 
-  border: 1px solid #db8f6c; 
-}
-.titulo-bienvenida {
-  font-size: 2rem;
-  color: #644a65;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-bottom: 20px;
-  border: 2px solid #775d7a; 
-  padding: 10px; 
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
